@@ -12,10 +12,10 @@ public class ChangeScene : MonoBehaviour
         fade = FindAnyObjectByType<FadeInOut>();
     }
 
-    public IEnumerator _ChangeScene()
+    public IEnumerator Change()
     {
         fade.FadeIn();
-        yield return new WaitForSeconds(1)
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("Caverna");
     }
 
@@ -23,7 +23,7 @@ public class ChangeScene : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            StartCoroutine(_ChangeScene));
+            StartCoroutine(Change());
         }
     }
 }
