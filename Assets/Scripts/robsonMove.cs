@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class robsonMove : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class robsonMove : MonoBehaviour
     public float Speed;
     public float JumpForce;
     public bool isJumping;
+    public Animator fade;
 
     private Rigidbody2D rig;
 
@@ -17,6 +19,7 @@ public class robsonMove : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        fade = GetComponent<Animator>(); 
     }
 
     // Update is called once per frame
@@ -49,5 +52,11 @@ public class robsonMove : MonoBehaviour
         }
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Entra_Caverna")
+        {
+            //    SceneManager.LoadScene("Caverna");
+        }
+    }
 }

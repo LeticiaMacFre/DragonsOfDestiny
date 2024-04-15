@@ -9,8 +9,10 @@ public class cameraSegue : MonoBehaviour
     private Vector3 inicialPosPlayer;
     private Vector3 inicialPosCamera;
     private Vector3 seguePosPlayer = new Vector3(0, -1.304f, 0);
+    private Vector3 limitePosPlayer = new Vector3(113.946f, 0, 0);
     private bool seguePlayer = false;
     private bool seguePulo = false;
+    private bool limitePlayer = false;
 
     private void Start()
     {
@@ -24,7 +26,7 @@ public class cameraSegue : MonoBehaviour
     {
         //transform.position = player.transform.position + new Vector3(0, 0, -10);
 
-        if(player.transform.position.x >= seguePosPlayer.x) 
+        if(player.transform.position.x >= seguePosPlayer.x && !limitePlayer)
         {
             seguePlayer = true;
         }
@@ -47,12 +49,21 @@ public class cameraSegue : MonoBehaviour
             transform.position = new Vector3(player.transform.position.x, inicialPosCamera.y, -10);
         }
 
-       /* 
-        if(seguePulo)
+        /* 
+         if(seguePulo)
+         {
+             transform.position += new Vector3(player.transform.position.x, player.transform.position.y, -10);
+         }
+        */
+
+        if (player.transform.position.x >= limitePosPlayer.x)
         {
-            transform.position += new Vector3(player.transform.position.x, player.transform.position.y, -10);
+            limitePlayer = true;
         }
-       */
+        else
+        {
+            limitePlayer = false;
+        }
 
     }
 }
