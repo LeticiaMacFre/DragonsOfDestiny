@@ -1,24 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
 {
-    public CanvasGroup canvasgroup;
+    public GameObject canvasgroup;
+    private Image image;
+    private Animator animator;
     public bool fadein = false;
     public bool fadeout = false;
 
     public float TimeToFade;
 
+    private void Start()
+    {
+        image = canvasgroup.GetComponent<Image>();
+        animator = canvasgroup.GetComponent<Animator>();
+
+    }
+
     // Update is called once per frame
     void Update()
     {
-    
+        /*
         if (fadein == true)
         {
-            if (canvasgroup.alpha < 1)
+            if (image.color.a <= 0)
             {
-                canvasgroup.alpha += TimeToFade * Time.deltaTime;
+                float valor += TimeToFade * Time.deltaTime;
+                image.color;
                 if (canvasgroup.alpha >= 1)
                 {
                     fadein = false;
@@ -37,11 +48,15 @@ public class FadeInOut : MonoBehaviour
                 }
             }
         }
+        */
+
+
     }
 
     public void FadeIn()
     {
-        fadein = true;
+        // fadein = true;
+        animator.Play("Base Layer.Fade");
     }
     public void FadeOut() 
     {

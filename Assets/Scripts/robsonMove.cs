@@ -10,7 +10,7 @@ public class robsonMove : MonoBehaviour
     public float JumpForce;
     public bool isJumping;
     public Animator fade;
-
+    public GameObject image;
     private Rigidbody2D rig;
 
 
@@ -19,7 +19,7 @@ public class robsonMove : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        fade = GetComponent<Animator>(); 
+        fade = image.GetComponent<Animator>(); 
     }
 
     // Update is called once per frame
@@ -56,7 +56,17 @@ public class robsonMove : MonoBehaviour
     {
         if(collision.gameObject.name == "Entra_Caverna")
         {
-            //    SceneManager.LoadScene("Caverna");
+            StartCoroutine("FadeFinalCena");
+            SceneManager.LoadScene("Caverna");
         }
+    }
+
+    IEnumerable FadeFinalCena()
+    {
+        image.SetActive(true);
+        fade.enabled = true;
+        fade.PlayInFixedTime("Base Layer.Fade");
+        yield return new WaitForSeconds(3);
+       
     }
 }
